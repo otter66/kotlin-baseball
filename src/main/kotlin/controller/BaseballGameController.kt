@@ -16,6 +16,7 @@ class BaseballGameController {
         var inputCommand = ""
 
         outputView.printGameStart()
+        setGameInfo()
 
         while (true) {
             outputView.printRequestNumber()
@@ -33,7 +34,7 @@ class BaseballGameController {
 
     }
 
-    fun setGameInfo() {
+    private fun setGameInfo() {
         baseballGame.setSuccessNumber(successNumberMaker.makeSuccessNumber())
     }
 
