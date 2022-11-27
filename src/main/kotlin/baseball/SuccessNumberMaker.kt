@@ -5,8 +5,15 @@ import camp.nextstep.edu.missionutils.Randoms
 class SuccessNumberMaker {
 
     fun makeSuccessNumber(): String {
-        val randomNumberList = Randoms.pickUniqueNumbersInRange(1, 9, 3)
+        val randomNumberList = mutableListOf<Int>()
 
-        return "${randomNumberList[0]}${randomNumberList[1]}${randomNumberList[2]}"
+        while (randomNumberList.size != 3) {
+            val randomNumber = Randoms.pickNumberInRange(1, 9)
+            if (randomNumberList.contains(randomNumber)) continue
+            randomNumberList.add(randomNumber)
+        }
+
+        return randomNumberList.joinToString("")
     }
+
 }
