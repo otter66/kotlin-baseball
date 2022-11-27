@@ -24,6 +24,7 @@ class BaseballGameController {
             outputView.printCorrectCount(baseballGame.countBall(inputNumber), baseballGame.countStrike(inputNumber))
 
             if(baseballGame.isSuccess(inputNumber)) {
+                outputView.printGameSuccess()
                 outputView.printRequestCommand()
                 inputCommand = inputController.getCommand()
 
