@@ -1,7 +1,7 @@
 package baseball
 
 class BaseballGame {
-    private val successNumber: String = ""
+    private var successNumber: String = ""
 
     fun countBall(inputNumber: String): Int {
         var count = 0
@@ -35,6 +35,8 @@ class BaseballGame {
         return true
     }
 
-
+    fun setSuccessNumber(number: String) {
+        successNumber = number
+    }
 
 }
