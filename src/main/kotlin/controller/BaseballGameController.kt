@@ -1,19 +1,41 @@
 package controller
 
 import baseball.BaseballGame
+import baseball.SuccessNumberMaker
+import values.Command
 import view.OutputView
 
 class BaseballGameController {
     private val inputController: InputController = InputController()
     private val outputView: OutputView = OutputView() // todo output도 view, controller 분리
     private val baseballGame: BaseballGame = BaseballGame()
+    private val successNumberMaker: SuccessNumberMaker = SuccessNumberMaker()
 
     fun runGame() {
-        setGame()
+        var inputNumber = ""
+        var inputCommand = ""
+
+        outputView.printGameStart()
+
+        while (true) {
+            outputView.printRequestNumber()
+            inputNumber = inputController.getThreeNumber()
+            outputView.printCorrectCount(baseballGame.countBall(inputNumber), baseballGame.countStrike(inputNumber))
+
+            if(baseballGame.isSuccess(inputNumber)) {
+                outputView.printRequestCommand()
+                inputCommand = inputController.getCommand()
+
+                if (inputCommand == Command.GAME_RESTART.message) setGameInfo()
+                else break
+            }
+        }
+
     }
 
-    private fun setGame() {
-        outputView.printGameStart()
-        // baseballGame.setSuccessNumber()
+    fun setGameInfo() {
+        baseballGame.setSuccessNumber(successNumberMaker.makeSuccessNumber())
     }
+
+
 }
