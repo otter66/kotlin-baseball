@@ -5,11 +5,11 @@ import values.Command
 class ValueInspector {
 
     fun checkThreeNumber(inputNumber: String): Boolean {
-        if (inputNumber.length == 3) return true
-        if (inputNumber.all { it in '1'..'9' }) return true
-        if ((inputNumber as List<Char>).distinct().size == 3) return true
+        if (inputNumber.length != 3) throw IllegalArgumentException()
+        if (!inputNumber.all { it in '1'..'9' }) throw IllegalArgumentException()
+        if (inputNumber.toCharArray().distinct().size != 3) throw IllegalArgumentException()
 
-        throw IllegalArgumentException()
+        return true
     }
 
     fun checkGameCommand(inputCommand: String): Boolean {
