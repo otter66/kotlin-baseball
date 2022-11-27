@@ -14,7 +14,7 @@ class BaseballGame {
             }
         }
 
-        return count - 3
+        return count
     }
 
     fun countStrike(inputNumber: String): Int {
