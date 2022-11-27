@@ -11,36 +11,43 @@ class BaseballGameController {
     private val baseballGame: BaseballGame = BaseballGame()
     private val successNumberMaker: SuccessNumberMaker = SuccessNumberMaker()
 
-    fun runGame() {
-        var inputNumber = ""
-        var inputCommand = ""
+    private var inputNumber = ""
 
+    fun runGame() {
         outputView.printGameStart()
         setGameInfo()
 
         while (true) {
-            outputView.printRequestNumber()
-            inputNumber = inputController.getThreeNumber()
-            outputView.printCorrectCount(baseballGame.countBall(inputNumber), baseballGame.countStrike(inputNumber))
+            proceedTurn()
+            if (!isContinue()) break
+        }
 
-            if(baseballGame.isSuccess(inputNumber)) {
-                outputView.printGameSuccess()
-                outputView.printRequestCommand()
-                inputCommand = inputController.getCommand()
+    }
 
-                if (inputCommand == Command.GAME_RESTART.message) setGameInfo()
-                else {
-                    outputView.printGameEnd()
-                    break
-                }
+    private fun isContinue(): Boolean {
+        if (baseballGame.isSuccess(inputNumber)) {
+            outputView.printGameSuccess()
+            outputView.printRequestCommand()
+            val inputCommand = inputController.getCommand()
+
+            if (inputCommand == Command.GAME_RESTART.message) setGameInfo()
+            else {
+                outputView.printGameEnd()
+                return false
             }
         }
 
+        return true
     }
 
     private fun setGameInfo() {
         baseballGame.setSuccessNumber(successNumberMaker.makeSuccessNumber())
     }
 
+    private fun proceedTurn() {
+        outputView.printRequestNumber()
+        val inputNumber = inputController.getThreeNumber()
+        outputView.printCorrectCount(baseballGame.countBall(inputNumber), baseballGame.countStrike(inputNumber))
+    }
 
 }
