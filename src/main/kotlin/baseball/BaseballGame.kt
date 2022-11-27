@@ -4,14 +4,13 @@ class BaseballGame {
     private var successNumber: String = ""
 
     fun countBall(inputNumber: String): Int {
+        val countChecker: MutableList<Boolean> = mutableListOf(false, false, false)
         var count = 0
 
         for (index in 0 until 3) {
-            if (successNumber[index] != inputNumber[index] &&
-                successNumber.contains(inputNumber[index])
-            ) {
-                count++
-            }
+            if (successNumber[index] == inputNumber[index]) countChecker[index] = true
+            if (countChecker[index]) continue
+            if (successNumber.contains(inputNumber[index])) count++
         }
 
         return count
