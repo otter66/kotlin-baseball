@@ -29,7 +29,10 @@ class BaseballGameController {
                 inputCommand = inputController.getCommand()
 
                 if (inputCommand == Command.GAME_RESTART.message) setGameInfo()
-                else break
+                else {
+                    outputView.printGameEnd()
+                    break
+                }
             }
         }
 

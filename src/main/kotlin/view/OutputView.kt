@@ -24,11 +24,15 @@ class OutputView {
     }
 
     fun printGameSuccess() {
-        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println(Notification.GAME_SUCCESS.message)
     }
 
     fun printRequestCommand() {
         println("게임을 새로 시작하려면 ${Command.GAME_RESTART.message}, 종료하려면 ${Command.GAME_STOP.message}를 입력하세요.")
+    }
+
+    fun printGameEnd() {
+        println(Notification.GAME_END.message)
     }
 
 }
