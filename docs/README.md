@@ -25,7 +25,8 @@
     - isNormalCommand() : 게임 재시작/종료 여부가 게임 규칙에 맞는지 확인한다.
     - countBall() : Ball의 개수를 센다.
     - countStrike() : Strike의 개수를 센다.
-
+- NumberGenerator : 게임에서 사용할 숫자 발행을 하는 클래스
+    - makeNumber() : 세자리 숫자를 만든다.
 
 
 

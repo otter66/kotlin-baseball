@@ -1,13 +1,13 @@
-package baseball
+package model
 
 import camp.nextstep.edu.missionutils.Randoms
 
-class SuccessNumberMaker {
+class NumberGenerator {
 
-    fun makeSuccessNumber(): String {
+    fun makeNumber(): String {
         val randomNumberList = mutableListOf<Int>()
 
-        while (randomNumberList.size != 3) {
+        while (randomNumberList.size < 3) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
             if (randomNumberList.contains(randomNumber)) continue
             randomNumberList.add(randomNumber)
