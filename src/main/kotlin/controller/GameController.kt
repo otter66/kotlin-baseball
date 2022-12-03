@@ -15,6 +15,7 @@ class GameController {
     private lateinit var baseballGame: BaseballGame
 
     fun runGame() {
+        outputView.printGameStart()
         setGame()
         startGame()
         outputView.printGameEnd()
