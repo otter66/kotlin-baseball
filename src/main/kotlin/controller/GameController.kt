@@ -14,44 +14,33 @@ class GameController {
     private val numberGenerator: NumberGenerator = NumberGenerator()
     private lateinit var baseballGame: BaseballGame
 
-    var inputNumber: String = ""
+    fun runGame() {
+        setGame()
+        startGame()
+        outputView.printGameEnd()
+    }
 
     private fun setGame() {
         baseballGame = BaseballGame(numberGenerator.makeNumber())
     }
 
-    fun runGame() {
-        setGame()
+    private fun startGame() {
+        do {
+            val gameNumber = baseballGame.getNumber()
+            val inputNumber = getValidatedInputNumber()
 
-        while (true) {
-            proceedTurn()
-            if (isContinue(inputNumber)) setGame()
-            else {
-                outputView.printGameEnd()
-                break
-            }
-        }
-
-    }
-
-    private fun proceedTurn() {
-        val gameNumber = baseballGame.getNumber()
-        inputNumber = getValidatedInputNumber()
-
-        outputView.printCorrectCount(
-            baseballRule.countBall(gameNumber, inputNumber),
-            baseballRule.countStrike(gameNumber, inputNumber)
-        )
+            printCorrectCount(gameNumber, inputNumber)
+        } while (isContinue(inputNumber))
     }
 
     private fun isContinue(inputNumber: String): Boolean {
         if (baseballRule.countStrike(baseballGame.getNumber(), inputNumber) == 3) {
             outputView.printGameSuccess()
-            outputView.printRequestCommand()
 
             val inputCommand = getValidatedInputCommand()
 
-            return inputCommand == Command.GAME_RESTART.message
+            if(inputCommand == Command.GAME_RESTART.message) setGame()
+            else return false
         }
 
         return true
@@ -75,8 +64,15 @@ class GameController {
             baseballRule.checkCommand(input)
             return input
         } catch (e: IllegalArgumentException) {
-            throw IllegalArgumentException("[ERROR] '1' 또는 '2'만 입력할 수 있습니다.  ")
+            throw IllegalArgumentException("[ERROR] '1' 또는 '2'만 입력할 수 있습니다.")
         }
+    }
+
+    private fun printCorrectCount(gameNumber: String, inputNumber: String) {
+        outputView.printCorrectCount(
+            baseballRule.countBall(gameNumber, inputNumber),
+            baseballRule.countStrike(gameNumber, inputNumber)
+        )
     }
 
 }

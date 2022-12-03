@@ -1,8 +1,8 @@
 package model
 
-class BaseballGame(makeNumber: String) {
+class BaseballGame(gameNumber: String) {
 
-    private val number: String = makeNumber
+    private val number: String = gameNumber
 
     fun getNumber(): String {
         return number

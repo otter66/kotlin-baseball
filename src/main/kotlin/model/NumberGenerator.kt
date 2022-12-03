@@ -7,10 +7,9 @@ class NumberGenerator {
     fun makeNumber(): String {
         val randomNumberList = mutableListOf<Int>()
 
-        while (randomNumberList.size < 3) {
+        repeat(3) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
-            if (randomNumberList.contains(randomNumber)) continue
-            randomNumberList.add(randomNumber)
+            if (!randomNumberList.contains(randomNumber)) randomNumberList.add(randomNumber)
         }
 
         return randomNumberList.joinToString("")
