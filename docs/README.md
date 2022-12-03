@@ -1,6 +1,6 @@
 
 # Class Diagram
-<img src="https://raw.githubusercontent.com/otter66/kotlin-baseball/refactoring/docs/images/class_diagram.png" alt="drawing" height="300"/>
+<img src="https://raw.githubusercontent.com/otter66/kotlin-baseball/refactoring/docs/images/class_diagram.png" alt="drawing" height="450"/>
 
 # Structure
 
